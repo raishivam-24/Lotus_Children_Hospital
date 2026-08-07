@@ -1,0 +1,228 @@
+/* ---------- Scroll reveal ---------- */
+.lch-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lch-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Hero ---------- */
+.lch-fac-hero {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 64px 32px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.lch-fac-hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  margin: 10px 0 14px;
+}
+
+.lch-fac-hero__sub {
+  color: var(--ink-soft);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 50ch;
+}
+
+.lch-fac-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(4px);
+  z-index: -1;
+  opacity: 0.55;
+  animation: lchFloat 8s ease-in-out infinite;
+}
+
+.lch-fac-hero__blob--1 {
+  width: 220px;
+  height: 220px;
+  background: var(--mint);
+  top: -60px;
+  left: -40px;
+}
+
+.lch-fac-hero__blob--2 {
+  width: 160px;
+  height: 160px;
+  background: var(--pink);
+  bottom: -50px;
+  right: -20px;
+  animation-delay: 1.5s;
+}
+
+@keyframes lchFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.06);
+  }
+}
+
+.lch-fac-pulse {
+  animation: lchPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes lchPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+}
+
+/* ---------- Sections ---------- */
+.lch-fac-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+
+.lch-fac-section--tinted {
+  max-width: none;
+  background: #f0f7f7;
+  padding: 56px 32px;
+}
+
+.lch-fac-section--tinted > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Equipment grid ---------- */
+.lch-fac-equip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 20px;
+}
+
+.lch-fac-equip-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 12px 26px rgba(0, 31, 63, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lch-fac-equip-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 34px rgba(0, 31, 63, 0.18);
+}
+
+.lch-fac-equip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.lch-fac-equip-card:hover img {
+  transform: scale(1.08);
+}
+
+.lch-fac-equip-card__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 14px;
+  background: linear-gradient(to top, rgba(0, 31, 63, 0.85), transparent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* ---------- Facility icon cards ---------- */
+.lch-fac-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.lch-fac-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 18px rgba(0, 31, 63, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.lch-fac-card:hover {
+  transform: translateY(-4px);
+  background: var(--mint);
+  box-shadow: 0 14px 26px rgba(0, 31, 63, 0.12);
+}
+
+.lch-fac-card__icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--tertiary-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: transform 0.25s ease;
+}
+
+.lch-fac-card:hover .lch-fac-card__icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.lch-fac-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .lch-fac-hero {
+    padding: 48px 20px 28px;
+  }
+  .lch-fac-section,
+  .lch-fac-section--tinted {
+    padding: 36px 20px;
+  }
+  .lch-fac-equip-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lch-reveal,
+  .lch-fac-hero__blob,
+  .lch-fac-pulse,
+  .lch-fac-equip-card,
+  .lch-fac-equip-card img,
+  .lch-fac-card,
+  .lch-fac-card__icon {
+    animation: none !important;
+    transition: none !important;
+  }
+  .lch-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

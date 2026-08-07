@@ -1,0 +1,165 @@
+/* ---------- Doctors hero ---------- */
+.lch-docs-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 32px 40px;
+  text-align: center;
+}
+
+.lch-docs-hero h1 {
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  margin: 10px 0 16px;
+}
+
+.lch-docs-hero p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+  font-size: 1.05rem;
+  margin: 0 auto;
+  max-width: 56ch;
+}
+
+.lch-docs-hero__timing {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Doctor profile rows ---------- */
+.lch-docs-list {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.lch-doc {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 44px;
+  align-items: start;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 36px;
+  box-shadow: 0 16px 34px rgba(0, 31, 63, 0.07);
+}
+
+.lch-doc--reverse {
+  grid-template-columns: 1fr 300px;
+}
+
+.lch-doc--reverse .lch-doc__photo {
+  order: 2;
+}
+
+.lch-doc--reverse .lch-doc__info {
+  order: 1;
+}
+
+.lch-doc__photo {
+  width: 100%;
+}
+
+.lch-doc__photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 22px;
+  display: block;
+  box-shadow: 0 12px 24px rgba(0, 31, 63, 0.12);
+}
+
+.lch-doc__info h2 {
+  font-size: 1.5rem;
+  margin: 8px 0 4px;
+}
+
+.lch-doc__hindiName {
+  margin: 0 0 20px;
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.lch-doc__label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+
+.lch-doc__quals {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.lch-doc__quals li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.lch-doc__quals li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.lch-doc__meta {
+  margin-bottom: 22px;
+}
+
+.lch-doc__reg {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  background: var(--tertiary-deep);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px) {
+  .lch-doc,
+  .lch-doc--reverse {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 24px;
+  }
+
+  .lch-doc__photo,
+  .lch-doc--reverse .lch-doc__photo {
+    order: -1;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .lch-doc--reverse .lch-doc__info {
+    order: 2;
+  }
+
+  .lch-docs-list {
+    padding: 20px 20px 64px;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lch-docs-hero {
+    padding: 40px 20px 28px;
+  }
+}

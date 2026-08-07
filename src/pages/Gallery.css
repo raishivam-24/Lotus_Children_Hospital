@@ -1,0 +1,221 @@
+/* ---------- Gallery hero ---------- */
+.lch-gallery-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 32px 32px;
+  text-align: center;
+}
+
+.lch-gallery-hero h1 {
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  margin: 10px 0 16px;
+}
+
+.lch-gallery-hero p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+  font-size: 1.05rem;
+  margin: 0 auto;
+  max-width: 58ch;
+}
+
+/* ---------- Quick nav chips ---------- */
+.lch-gallery-nav {
+  max-width: 1120px;
+  margin: 0 auto 8px;
+  padding: 0 32px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.lch-gallery-nav__chip {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: #ffffff;
+  border: 1px solid #e2e6ea;
+  padding: 9px 16px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.lch-gallery-nav__chip:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ---------- Gallery sections ---------- */
+.lch-gallery-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  scroll-margin-top: 90px;
+}
+
+.lch-gallery-section--tinted {
+  max-width: none;
+  background: #f0f7f7;
+  padding: 48px 32px;
+}
+
+.lch-gallery-section--tinted > * {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lch-gallery-section__head {
+  margin-bottom: 24px;
+}
+
+.lch-gallery-section__head h2 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.lch-gallery-section__head p {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.96rem;
+}
+
+/* ---------- Photo grid ---------- */
+.lch-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.lch-gallery-item {
+  position: relative;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: none;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 10px 22px rgba(0, 31, 63, 0.08);
+}
+
+.lch-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.lch-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.lch-gallery-item__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px;
+  background: linear-gradient(to top, rgba(0, 31, 63, 0.82), transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.lch-gallery-item:hover .lch-gallery-item__caption,
+.lch-gallery-item:focus-visible .lch-gallery-item__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Lightbox ---------- */
+.lch-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 15, 31, 0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  animation: lchFadeIn 0.15s ease;
+}
+
+@keyframes lchFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lch-lightbox figure {
+  margin: 0;
+  max-width: min(90vw, 900px);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lch-lightbox img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.lch-lightbox figcaption {
+  color: #fff;
+  margin-top: 14px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.lch-lightbox__close {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lch-lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .lch-gallery-hero {
+    padding: 40px 20px 24px;
+  }
+  .lch-gallery-nav {
+    padding: 0 20px 24px;
+  }
+  .lch-gallery-section,
+  .lch-gallery-section--tinted {
+    padding: 32px 20px;
+  }
+  .lch-gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+  }
+}
