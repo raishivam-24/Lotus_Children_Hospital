@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #f8f9fa;
+  background: #F9F7F2;
   border-bottom: 1px solid transparent;
   transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
@@ -16,7 +16,7 @@
 .lch-header__inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 14px 32px;
+  padding: 16px 32px;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -31,21 +31,41 @@
 }
 
 .lch-header__mark {
-  display: inline-flex;
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: #e6eaee;
-  border-radius: 12px;
+  border: 2px solid rgba(0, 128, 128, 0.12);
+  box-shadow: 0 6px 18px rgba(0, 31, 63, 0.08);
+  flex-shrink: 0;
+}
+
+.lch-header__mark img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  padding: 4px;
 }
 
 .lch-header__name {
-  font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-weight: 600;
-  font-size: 1.32rem;
-  color: #001f3f;
-  letter-spacing: -0.01em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #1B4D3E;
+  line-height: 1.1;
+}
+
+.lch-header__name small {
+  display: block;
+  font-size: 0.75rem;
+  color: #008080;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 
 .lch-header__nav {
@@ -57,7 +77,7 @@
 .lch-header__link {
   position: relative;
   text-decoration: none;
-  color: #4a5568;
+  color: #55675F;
   font-size: 0.98rem;
   font-weight: 500;
   padding: 8px 14px;
@@ -68,12 +88,12 @@
 
 .lch-header__link:hover {
   background: #eef1f4;
-  color: #008080;
+  color: #4FA8A3;
 }
 
 .lch-header__link--active {
-  background: #e0f2f1;
-  color: #001f3f;
+  background: #DCEEEC;
+  color: #1B4D3E;
   font-weight: 600;
 }
 
@@ -84,7 +104,7 @@
 }
 
 .lch-header__phone {
-  color: #4a5568;
+  color: #55675F;
   font-size: 0.92rem;
   text-decoration: none;
   font-weight: 500;
@@ -92,7 +112,7 @@
 }
 
 .lch-header__phone:hover {
-  color: #008080;
+  color: #4FA8A3;
 }
 
 .lch-header__burger {
@@ -112,7 +132,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background: #001f3f;
+  background: #1B4D3E;
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
@@ -134,6 +154,15 @@
 }
 
 @media (max-width: 760px) {
+    .lch-header__mark {
+    width: 46px;
+    height: 46px;
+  }
+
+  .lch-header__name {
+    font-size: 1.15rem;
+  }
+
   .lch-header__inner {
     padding: 12px 20px;
   }

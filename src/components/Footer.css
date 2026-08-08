@@ -1,5 +1,5 @@
 .lch-footer {
-  background: #001f3f;
+  background: #1B4D3E;
   color: #dfe8e3;
   padding: 56px 32px 24px;
   margin-top: 80px;
@@ -24,21 +24,21 @@
 
 .lch-footer__tagline {
   margin: 10px 0 14px;
-  color: #c3ccd6;
+  color: #c9d3cd;
   font-size: 0.94rem;
   max-width: 30ch;
 }
 
 .lch-footer__timing {
   font-size: 0.88rem;
-  color: #9aa8bb;
+  color: #9fb0a8;
 }
 
 .lch-footer__col h4 {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #6fd0cc;
+  color: #79c4be;
   margin-bottom: 16px;
 }
 
@@ -53,12 +53,12 @@
 
 .lch-footer__col li {
   font-size: 0.9rem;
-  color: #cfd6e0;
+  color: #cdd6d1;
   line-height: 1.5;
 }
 
 .lch-footer__col a {
-  color: #cfd6e0;
+  color: #cdd6d1;
   text-decoration: none;
 }
 
@@ -76,7 +76,7 @@
   justify-content: space-between;
   gap: 12px;
   font-size: 0.82rem;
-  color: #93a2b8;
+  color: #97a89f;
 }
 
 .lch-footer__legal {
@@ -86,7 +86,7 @@
 }
 
 .lch-footer__legal a {
-  color: #93a2b8;
+  color: #97a89f;
   text-decoration: none;
 }
 

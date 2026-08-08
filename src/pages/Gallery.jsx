@@ -22,9 +22,9 @@ const GALLERY_SECTIONS = [
     title: "Hospital — Front & Back View",
     desc: "A first look at Lotus Children's Hospital, inside and out.",
     images: [
-      { src: placeholder("Front View", "001F3F", "ffffff"), caption: "Main entrance & façade" },
-      { src: placeholder("Back View", "001F3F", "ffffff"), caption: "Rear building view" },
-      { src: placeholder("Night View", "001F3F", "ffffff"), caption: "Hospital at night" },
+      { src: "/gallery/hospital-front-view.png", caption: "Main entrance & façade" , ratio: "16/9" },
+      { src: "/gallery/hospital-front-2.png", caption: "Rear building view" },
+      { src: "/gallery/hospital-back-view.png", caption: "Hospital back view" , ratio: "16/9" },
     ],
   },
   {
@@ -32,9 +32,9 @@ const GALLERY_SECTIONS = [
     title: "Reception Area",
     desc: "A warm, welcoming first stop for every family that walks in.",
     images: [
-      { src: placeholder("Reception Desk", "008080", "ffffff"), caption: "Reception desk" },
-      { src: placeholder("Waiting Lounge", "008080", "ffffff"), caption: "Waiting lounge" },
-      { src: placeholder("Registration Counter", "008080", "ffffff"), caption: "Registration counter" },
+      { src: "/gallery/reception.png", caption: "Reception desk"},
+      { src: "/gallery/waiting-area.png", caption: "Waiting lounge" },
+      { src: "/gallery/pharmacy.png", caption: "Pharmacy Conter", ratio: "16/9"},
     ],
   },
   {
@@ -42,8 +42,11 @@ const GALLERY_SECTIONS = [
     title: "NICU — 1",
     desc: "Newborn Intensive Care Unit, bay 1 — round-the-clock monitoring.",
     images: [
-      { src: placeholder("NICU 1 - Bay", "e0f2f1", "001F3F"), caption: "NICU bay 1" },
-      { src: placeholder("NICU 1 - Warmer", "e0f2f1", "001F3F"), caption: "Infant warmer station" },
+      { src: "/gallery/nicu-1.png", caption: "NICU 1" },
+      { src: "/gallery/nicu-1-1.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-1-2.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-1-3.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-1-4.png", caption: "Infant warmer station" },
     ],
   },
   {
@@ -51,8 +54,11 @@ const GALLERY_SECTIONS = [
     title: "NICU — 2",
     desc: "Newborn Intensive Care Unit, bay 2.",
     images: [
-      { src: placeholder("NICU 2 - Bay", "e0f2f1", "001F3F"), caption: "NICU bay 2" },
-      { src: placeholder("NICU 2 - Monitor", "e0f2f1", "001F3F"), caption: "Bedside monitoring" },
+      { src: "/gallery/nicu-2.png", caption: "NICU 2" },
+      { src: "/gallery/nicu-2-1.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-2-2.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-2-3.png", caption: "Infant warmer station" },
+      { src: "/gallery/nicu-2-4.png", caption: "Infant warmer station" },
     ],
   },
   {
@@ -60,8 +66,10 @@ const GALLERY_SECTIONS = [
     title: "NICU — 3",
     desc: "Newborn Intensive Care Unit, bay 3.",
     images: [
-      { src: placeholder("NICU 3 - Bay", "e0f2f1", "001F3F"), caption: "NICU bay 3" },
-      { src: placeholder("NICU 3 - CPAP", "e0f2f1", "001F3F"), caption: "Bubble CPAP setup" },
+      { src: "/gallery/nicu3.png", caption: "NICU bay 3" },
+      { src: "/gallery/nicu31.png", caption: "Bedside monitoring" },
+      { src: "/gallery/nicu32.png", caption: "Bedside monitoring" },
+      { src: "/gallery/nicu33.png", caption: "Bedside monitoring" },
     ],
   },
   {
@@ -69,9 +77,11 @@ const GALLERY_SECTIONS = [
     title: "Private Ward",
     desc: "Comfortable, private rooms for families who want extra privacy.",
     images: [
-      { src: placeholder("Private Room", "f8f9fa", "001F3F"), caption: "Private patient room" },
-      { src: placeholder("Attendant Area", "f8f9fa", "001F3F"), caption: "Attendant seating area" },
-      { src: placeholder("Private Washroom", "f8f9fa", "001F3F"), caption: "Attached washroom" },
+      { src: "/gallery/private1.png", caption: "Private room door" },
+      { src: "/gallery/private11.png", caption: "Private room" },
+      { src: "/gallery/private2.png", caption: "Private room door" },
+      { src: "/gallery/private21.png", caption: "Private room" },
+      
     ],
   },
   {
@@ -79,8 +89,11 @@ const GALLERY_SECTIONS = [
     title: "PICU",
     desc: "Paediatric Intensive Care Unit for critically ill children.",
     images: [
-      { src: placeholder("PICU Bay", "001F3F", "ffffff"), caption: "PICU bed & monitors" },
-      { src: placeholder("PICU Ventilator", "001F3F", "ffffff"), caption: "Ventilator support station" },
+      { src: "/gallery/picu1.png", caption: "PICU Entrance" },
+      { src: "/gallery/picu2.png", caption: "PICU bed" },
+      { src: "/gallery/picu3.png", caption: "PICU bed" },
+      { src: "/gallery/picu4.png", caption: "PICU bed" },   
+      { src: "/gallery/picu5.png", caption: "PICU desk" },   
     ],
   },
   {
@@ -88,11 +101,14 @@ const GALLERY_SECTIONS = [
     title: "Operation Theatre",
     desc: "A fully equipped OT for all paediatric surgical procedures.",
     images: [
-      { src: placeholder("Operation Theatre", "008080", "ffffff"), caption: "Main operation theatre" },
-      { src: placeholder("Pre-Op Room", "008080", "ffffff"), caption: "Pre-operative room" },
-      { src: placeholder("Sterilization Area", "008080", "ffffff"), caption: "Sterilization area" },
+      { src: "/gallery/OT1.png", caption: "Operation Theatre entrance" },
+      { src: "/gallery/OT2.png", caption: "Operation Theatre interior" },
+      { src: "/gallery/OT3.png", caption: "Operation Theatre interior" },
+      { src: "/gallery/OT4.png", caption: "Operation Theatre interior" },
+      { src: "/gallery/OT5.png", caption: "Operation Theatre interior" },
     ],
   },
+  
 ];
 
 export default function Gallery() {
@@ -140,6 +156,7 @@ export default function Gallery() {
                 type="button"
                 className="lch-gallery-item"
                 key={img.src}
+                style={{ aspectRatio: img.ratio || "9 / 16" }}
                 onClick={() => setLightbox(img)}
               >
                 <img src={img.src} alt={img.caption} loading="lazy" />

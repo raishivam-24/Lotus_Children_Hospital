@@ -105,15 +105,15 @@
 /* ---------- Equipment grid ---------- */
 .lch-fac-equip-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
 .lch-fac-equip-card {
   position: relative;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 14 / 16;
   box-shadow: 0 12px 26px rgba(0, 31, 63, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -140,59 +140,86 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 12px 14px;
-  background: linear-gradient(to top, rgba(0, 31, 63, 0.85), transparent);
+  padding: 18px 20px;
+  background: linear-gradient(to top, rgba(0, 31, 63, 0.88), transparent);
   color: #fff;
-  font-weight: 600;
-  font-size: 0.92rem;
+  font-weight: 700;
+  font-size: 1.15rem;
 }
 
-/* ---------- Facility icon cards ---------- */
+/* ---------- Facility photo cards ---------- */
 .lch-fac-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
 }
 
 .lch-fac-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 20px 18px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: 0 8px 18px rgba(0, 31, 63, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(0, 31, 63, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .lch-fac-card:hover {
-  transform: translateY(-4px);
-  background: var(--mint);
-  box-shadow: 0 14px 26px rgba(0, 31, 63, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 30px rgba(0, 31, 63, 0.14);
 }
 
-.lch-fac-card__icon {
-  flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--tertiary-deep);
+.lch-fac-card__photo {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.lch-fac-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.lch-fac-card:hover .lch-fac-card__photo img {
+  transform: scale(1.08);
+}
+
+.lch-fac-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 14px rgba(0, 31, 63, 0.18);
   transition: transform 0.25s ease;
 }
 
-.lch-fac-card:hover .lch-fac-card__icon {
-  transform: rotate(-8deg) scale(1.1);
+.lch-fac-card:hover .lch-fac-card__badge {
+  transform: rotate(-8deg) scale(1.08);
+  background: var(--primary);
 }
 
-.lch-fac-card p {
+.lch-fac-card__body {
+  padding: 16px 18px 20px;
+}
+
+.lch-fac-card__body h4 {
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+
+.lch-fac-card__body p {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: var(--ink);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 /* ---------- Responsive ---------- */
@@ -205,7 +232,8 @@
     padding: 36px 20px;
   }
   .lch-fac-equip-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
   }
 }
 
@@ -217,7 +245,8 @@
   .lch-fac-equip-card,
   .lch-fac-equip-card img,
   .lch-fac-card,
-  .lch-fac-card__icon {
+  .lch-fac-card__photo img,
+  .lch-fac-card__badge {
     animation: none !important;
     transition: none !important;
   }

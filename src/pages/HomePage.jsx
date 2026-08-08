@@ -2,28 +2,29 @@ import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import lotusData from "../data/data";
+import logo from "../assets/logo.png";
 import "./HomePage.css";
 
 const HIGHLIGHT_FACILITIES = [
   {
-    icon: "👶",
+    image: "/gallery/nicu-1-1.png",
     title: "NICU",
     desc: "Newborn Intensive Care Unit for round-the-clock critical newborn care.",
   },
   {
-    icon: "🏥",
+    image: "/gallery/picu3.png",
     title: "PICU",
     desc: "Paediatric Intensive Care Unit for critically ill children.",
   },
   {
-    icon: "🚑",
-    title: "24x7 Admission",
-    desc: "Round-the-clock emergency admission facility, every day of the year.",
+    image: "/gallery/reception.png",
+    title: "24×7 Admission",
+    desc: "Round-the-clock emergency admission facility.",
   },
   {
-    icon: "🛏️",
+    image: "/gallery/private11.png",
     title: "Private & General Wards",
-    desc: "Comfortable private rooms and general wards for every family's needs.",
+    desc: "Comfortable private rooms and general wards.",
   },
 ];
 
@@ -68,9 +69,9 @@ export default function HomePage() {
           >
             <defs>
               <radialGradient id="lchBlobGradient" cx="32%" cy="32%" r="75%">
-                <stop offset="0%" stopColor="#dff3e7" />
-                <stop offset="60%" stopColor="#f4ead6" />
-                <stop offset="100%" stopColor="#fbf5ea" stopOpacity="0" />
+                <stop offset="0%" stopColor="#DCEEEC" />
+                <stop offset="60%" stopColor="#F0ECE3" />
+                <stop offset="100%" stopColor="#F9F7F2" stopOpacity="0" />
               </radialGradient>
             </defs>
             <path
@@ -79,7 +80,9 @@ export default function HomePage() {
               d="M45.7,-49.5C58.9,-39.7,68.4,-24.4,70.5,-8.1C72.6,8.2,67.3,25.5,56.6,38.5C45.9,51.5,29.8,60.2,12.4,63.9C-5,67.6,-23.7,66.3,-38.7,57.4C-53.7,48.5,-65,32,-68.5,14.1C-72,-3.8,-67.7,-23.1,-56.7,-37.4C-45.7,-51.7,-28,-61,-9.9,-63.4C8.2,-65.8,26.4,-59.3,45.7,-49.5Z"
             />
           </svg>
-          <span className="lch-hero__emoji">🌸</span>
+          <div className="lch-hero__logo">
+            <img src={logo} alt="Lotus Children's Hospital" />
+          </div>
         </div>
       </section>
 
@@ -109,7 +112,10 @@ export default function HomePage() {
         <div className="lch-facility-grid">
           {HIGHLIGHT_FACILITIES.map((item) => (
             <div className="lch-facility-card" key={item.title}>
-              <span className="lch-facility-card__icon">{item.icon}</span>
+              <div className="lch-facility-card__image">
+                <img src={item.image} alt={item.title} />
+              </div>
+
               <h4>{item.title}</h4>
               <p>{item.desc}</p>
             </div>

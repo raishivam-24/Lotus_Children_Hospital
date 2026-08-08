@@ -5,20 +5,21 @@ import lotusData from "../data/data";
 import "./HomePage.css";
 import "./Doctors.css";
 
-// Generates a clean placeholder headshot from the doctor's initials.
-// Swap the `src` for a real photo path whenever one is available.
-function avatarUrl(name) {
-  const clean = name.replace("Dr. ", "");
-  return `https://ui-avatars.com/api/?name=${encodeURIComponent(
-    clean
-  )}&background=001F3F&color=fff&size=320&font-size=0.36&bold=true`;
-}
+// Import doctor images
+import doctor1 from "/doctors/Dr-Manoj-Chandrakar.png";
+
+
+// Map images to doctors
+const DOCTOR_PHOTOS = {
+  "CGMC-10979/2021": doctor1,
+  // "REGISTRATION_NO_2": doctor2,
+};
 
 export default function Doctors() {
   const { doctors, contact } = lotusData;
 
   return (
-    <div className="lch-page lch-docs-page">
+    <div className="lch-page">
       <Header />
 
       {/* HERO */}
@@ -42,7 +43,11 @@ export default function Doctors() {
             key={doc.regNo}
           >
             <div className="lch-doc__photo">
-              <img src={avatarUrl(doc.name)} alt={doc.name} />
+              <img
+                src={DOCTOR_PHOTOS[doc.regNo]}
+                alt={doc.name}
+                className="lch-doc__photo-img"
+              />
             </div>
 
             <div className="lch-doc__info">
@@ -82,6 +87,7 @@ export default function Doctors() {
           child's needs, or walk in for a consultation any day between{" "}
           {contact.consultationTiming.replace("Daily, ", "")}.
         </p>
+
         <a
           href={`tel:${contact.phones[0]}`}
           className="lch-btn lch-btn--primary lch-btn--lg"

@@ -63,15 +63,73 @@ function iconFor(text) {
   return found ? found.icon : "✨";
 }
 
+// Pulls a short, card-friendly title out of the longer facility description
+// in data.js, e.g. "Neurology Clinic (treatment for epilepsy...)" -> "Neurology Clinic".
+function shortTitle(text) {
+  const parenSplit = text.split(" (")[0];
+  const dashSplit = parenSplit.split(" - ")[0];
+  return dashSplit.length > 34 ? `${dashSplit.slice(0, 34)}…` : dashSplit;
+}
+
+// Alternating navy / teal / mint tones so the facility photo grid doesn't
+// look monochrome. Swap each `src` in the card render for a real photo
+// whenever available — layout and captions keep working unchanged.
+const FACILITY_TONES = [
+  ["1B4D3E", "ffffff"],
+  ["4FA8A3", "ffffff"],
+  ["DCEEEC", "1B4D3E"],
+];
+
+// Real photos take priority over the generated placeholder for any facility
+// whose text includes the given keyword (case-insensitive). Add more entries
+// here as real photos come in — e.g. nicu: "/images/facilities/nicu.jpg".
+const FACILITY_PHOTOS = {
+  "24x7": "/gallery/reception.png",
+  vaccination: "/facilities/vaccination.png",
+  nicu: "/gallery/nicu-1-2.png",
+  picu: "/gallery/picu3.png",
+  admission: "/gallery/private11.png",
+};
+
+function facilityImage(text, index) {
+  const override = Object.keys(FACILITY_PHOTOS).find((key) =>
+    text.toLowerCase().includes(key)
+  );
+  if (override) return FACILITY_PHOTOS[override];
+
+  const [bg, fg] = FACILITY_TONES[index % FACILITY_TONES.length];
+  return `https://placehold.co/480x340/${bg}/${fg}?text=${encodeURIComponent(
+    shortTitle(text)
+  )}&font=montserrat`;
+}
+
 // Equipment gets a photo placeholder — swap `src` for real equipment photos
 // whenever available, layout stays the same.
 const EQUIPMENT_IMAGES = {
-  Ventilator: "001F3F",
-  "Bedside Monitor": "008080",
-  "Bubble CPAP": "001F3F",
-  "Double Surface Phototherapy": "008080",
-  "Infant Warmer": "001F3F",
+  Ventilator: "1B4D3E",
+  "Bedside Monitor": "4FA8A3",
+  "Bubble CPAP": "1B4D3E",
+  "Double Surface Phototherapy": "4FA8A3",
+  "Infant Warmer": "1B4D3E",
 };
+
+// Real equipment photos take priority over the color placeholder above.
+// Add more entries as real photos come in — key must match the exact
+// string used in data.js's `equipment` array.
+const EQUIPMENT_PHOTOS = {
+  "Ventilator": "/facilities/ventilator.png",
+  "Bedside Monitor": "/facilities/bedside-monitor.png",
+  "Bubble CPAP": "/facilities/Bubble CPAP.png",
+  "Double Surface Phototherapy": "/facilities/double-surface-phototherapy.png",
+  "Infant Warmer": "/facilities/infant-warmer.png",
+};
+
+function equipmentImage(item) {
+  if (EQUIPMENT_PHOTOS[item]) return EQUIPMENT_PHOTOS[item];
+  return `https://placehold.co/500x360/${EQUIPMENT_IMAGES[item] || "008080"}/ffffff?text=${encodeURIComponent(
+    item
+  )}&font=montserrat`;
+}
 
 export default function Facilities() {
   const { facilitiesAvailable, equipment, governmentScheme, contact } = lotusData;
@@ -123,9 +181,7 @@ export default function Facilities() {
               delay={i * 90}
             >
               <img
-                src={`https://placehold.co/500x360/${EQUIPMENT_IMAGES[item] || "008080"}/ffffff?text=${encodeURIComponent(
-                  item
-                )}&font=montserrat`}
+                src={equipmentImage(item)}
                 alt={item}
                 loading="lazy"
               />
@@ -150,8 +206,18 @@ export default function Facilities() {
               key={facility}
               delay={(i % 6) * 70}
             >
-              <span className="lch-fac-card__icon">{iconFor(facility)}</span>
-              <p>{facility}</p>
+              <div className="lch-fac-card__photo">
+                <img
+                  src={facilityImage(facility, i)}
+                  alt={shortTitle(facility)}
+                  loading="lazy"
+                />
+                <span className="lch-fac-card__badge">{iconFor(facility)}</span>
+              </div>
+              <div className="lch-fac-card__body">
+                <h4>{shortTitle(facility)}</h4>
+                <p>{facility}</p>
+              </div>
             </Reveal>
           ))}
         </div>

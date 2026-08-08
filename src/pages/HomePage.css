@@ -2,18 +2,20 @@
 
 /* ---------- Design tokens ---------- */
 .lch-page {
-  --primary: #001f3f;
-  --primary-dark: #001529;
-  --secondary: #008080;
-  --secondary-dark: #006666;
-  --tertiary: #f8f9fa;
-  --tertiary-deep: #eef1f4;
-  --neutral: #4a5568;
-  --mint: #e0f2f1;
-  --mint-deep: #c7e6e4;
-  --pink: #eef3f8;
-  --ink: #1a2233;
-  --ink-soft: #4a5568;
+  --primary: #d97b93;
+  --primary-dark: #c15c77;
+  --secondary: #4fa8a3;
+  --secondary-dark: #3a8b86;
+  --tertiary: #f9f7f2;
+  --tertiary-deep: #f0ece3;
+  --neutral: #55675f;
+  --mint: #dceeec;
+  --mint-deep: #c3e0dd;
+  --pink: #fbeef1;
+  --deep: #1b4d3e;
+  --deep-dark: #123527;
+  --ink: #1b4d3e;
+  --ink-soft: #55675f;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   background: var(--tertiary);
   color: var(--ink);
@@ -147,14 +149,52 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  overflow: visible;
+  animation: blobFloat 10s ease-in-out infinite;
+  filter: blur(6px);
 }
 
-.lch-hero__emoji {
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.05) rotate(5deg);
+  }
+}
+
+.lch-hero__logo {
   position: relative;
-  font-size: 7rem;
-  filter: drop-shadow(0 18px 30px rgba(0, 128, 128, 0.28));
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lch-hero__logo img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  padding: 12px;
+  border: 8px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 20px 50px rgba(0, 31, 63, 0.18),
+    0 0 60px rgba(0, 128, 128, 0.15);
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* ---------- Government scheme strip ---------- */
@@ -247,40 +287,49 @@
 
 .lch-facility-card {
   background: #fff;
-  border: 1px solid #e2e6ea;
-  border-radius: 20px;
-  padding: 26px 22px;
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid #e8eef3;
+  box-shadow: 0 12px 28px rgba(0, 31, 63, 0.08);
+  transition: all 0.35s ease;
+  padding: 18px;
 }
 
 .lch-facility-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 30px rgba(0, 31, 63, 0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 22px 45px rgba(0, 31, 63, 0.16);
 }
 
-.lch-facility-card__icon {
-  font-size: 1.8rem;
-  display: inline-flex;
-  width: 52px;
-  height: 52px;
-  align-items: center;
-  justify-content: center;
-  background: var(--mint);
-  border-radius: 14px;
-  margin-bottom: 14px;
+.lch-facility-card__image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+
+.lch-facility-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.lch-facility-card:hover .lch-facility-card__image img {
+  transform: scale(1.08);
 }
 
 .lch-facility-card h4 {
-  font-size: 1.05rem;
-  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 10px;
 }
 
 .lch-facility-card p {
-  margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--ink-soft);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .lch-facility-more {
