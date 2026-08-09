@@ -15,6 +15,37 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.lch-footer__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+/* Circular logo frame — white ring so the mark reads clearly against the
+   dark green background, same treatment (padding + subtle shadow) as the
+   header/hero logo, just scaled down for the footer. */
+.lch-footer__logo {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.lch-footer__logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .lch-footer__name {
   font-family: "Montserrat", "Segoe UI", sans-serif;
   font-size: 1.3rem;

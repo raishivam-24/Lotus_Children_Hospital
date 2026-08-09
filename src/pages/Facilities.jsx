@@ -40,27 +40,94 @@ function Reveal({ as: Tag = "div", className = "", delay = 0, children, ...rest 
   );
 }
 
-// Icons matched to each facility line from data.js — keyed by keyword so the
+// ---------- Icon set ----------
+// Small, stroke-based SVGs (24x24, currentColor) so every icon inherits its
+// card's accent color and stays crisp at any size — no image files, no new
+// dependency. Add a new icon here + a matching FACILITY_ICONS entry below
+// whenever a new facility line needs its own glyph.
+const ICONS = {
+  stethoscope: (
+    <path d="M4.5 3v6a4.5 4.5 0 0 0 9 0V3M9 15.5a4.5 4.5 0 0 0 9 0v-2M18 9v1.5a3 3 0 1 1-3-3" />
+  ),
+  syringe: (
+    <path d="m18 2 4 4m-4.5-2.5-9 9 3 3 9-9M8.5 12.5 3 18l1 2 2 1 5.5-5.5M6 16l2 2" />
+  ),
+  bed: (
+    <path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18v2M21 18v2M3 13h18M7 9V6a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v3" />
+  ),
+  baby: (
+    <path d="M9 12h.01M15 12h.01M8.5 15.5c1 1 2 1.5 3.5 1.5s2.5-.5 3.5-1.5M12 3a4 4 0 0 0-4 4c0 1 .3 1.7.8 2.4C7.7 10.2 7 11.5 7 13a5 5 0 0 0 10 0c0-1.5-.7-2.8-1.8-3.6.5-.7.8-1.4.8-2.4a4 4 0 0 0-4-4Z" />
+  ),
+  building: (
+    <path d="M4 21V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14M12 21v-9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v9M4 21h16M8 10h.01M8 14h.01M16 14h.01" />
+  ),
+  bottle: (
+    <path d="M10 2h4M11 2v3.5c0 .4-.15.8-.44 1.1L9 8.4c-.6.6-.9 1.4-.9 2.2v9.4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-9.4c0-.8-.3-1.6-.9-2.2l-1.56-1.8A1.6 1.6 0 0 1 13 5.5V2" />
+  ),
+  user: (
+    <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+  ),
+  brain: (
+    <path d="M9.5 3a3 3 0 0 0-3 3c0 .4 0 .8.15 1.15A3 3 0 0 0 5 10a3 3 0 0 0 1.15 4.85A3 3 0 0 0 9 19a3 3 0 0 0 .5-.05V3.05A3 3 0 0 0 9.5 3ZM14.5 3a3 3 0 0 1 3 3c0 .4 0 .8-.15 1.15A3 3 0 0 1 19 10a3 3 0 0 1-1.15 4.85A3 3 0 0 1 15 19a3 3 0 0 1-.5-.05V3.05a3 3 0 0 1 .5-.05Z" />
+  ),
+  droplet: (
+    <path d="M12 2.7s6 6.4 6 10.6a6 6 0 0 1-12 0c0-4.2 6-10.6 6-10.6Z" />
+  ),
+  bandage: (
+    <path d="m4.9 14.5 5.6-5.6a3 3 0 0 1 4.2 0l4.4 4.4a3 3 0 0 1 0 4.2l-5.6 5.6a3 3 0 0 1-4.2 0l-4.4-4.4a3 3 0 0 1 0-4.2ZM9 15l6-6M11 8l.01.01M14.5 11.5l.01.01" />
+  ),
+  dna: (
+    <path d="M7 3s0 4 5 4 5 4 5 4-0 4-5 4-5 4-5 4M4 6h1M19 6h-1M4 18h1M19 18h-1M6 9h2M16 9h2M6 15h2M16 15h2" />
+  ),
+  waves: (
+    <path d="M3 16c1.3 1.3 2.7 1.3 4 0s2.7-1.3 4 0 2.7 1.3 4 0 2.7-1.3 4-1.3M3 11c1.3 1.3 2.7 1.3 4 0s2.7-1.3 4 0 2.7 1.3 4 0 2.7-1.3 4-1.3" />
+  ),
+  scalpel: (
+    <path d="M20 4 9 15l-3 1 1-3L18 2l2 2ZM6 18l-2 2M9 15l3 3" />
+  ),
+  sparkle: (
+    <path d="M12 3v4M12 17v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M3 12h4M17 12h4M4.2 19.8 7 17M17 7l2.8-2.8" />
+  ),
+};
+
+function Icon({ name, className }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {ICONS[name] || ICONS.sparkle}
+    </svg>
+  );
+}
+
+// Icon matched to each facility line from data.js — keyed by keyword so the
 // list stays data-driven without hardcoding a whole new array.
 const FACILITY_ICONS = [
-  { match: /24x7 medical/i, icon: "🩺" },
-  { match: /vaccination/i, icon: "💉" },
-  { match: /admission/i, icon: "🛏️" },
-  { match: /newborn intensive/i, icon: "👶" },
-  { match: /paediatric intensive/i, icon: "🏥" },
-  { match: /well baby/i, icon: "🍼" },
-  { match: /adolescent/i, icon: "🧑" },
-  { match: /neurology/i, icon: "🧠" },
-  { match: /diabetic/i, icon: "🩸" },
-  { match: /thalassemia/i, icon: "🩹" },
-  { match: /genetic/i, icon: "🧬" },
-  { match: /nephrology/i, icon: "💧" },
-  { match: /surgical/i, icon: "🔬" },
+  { match: /24x7 medical/i, icon: "stethoscope" },
+  { match: /vaccination/i, icon: "syringe" },
+  { match: /admission/i, icon: "bed" },
+  { match: /newborn intensive/i, icon: "baby" },
+  { match: /paediatric intensive/i, icon: "building" },
+  { match: /well baby/i, icon: "bottle" },
+  { match: /adolescent/i, icon: "user" },
+  { match: /neurology/i, icon: "brain" },
+  { match: /diabetic/i, icon: "droplet" },
+  { match: /thalassemia/i, icon: "bandage" },
+  { match: /genetic/i, icon: "dna" },
+  { match: /nephrology/i, icon: "waves" },
+  { match: /surgical/i, icon: "scalpel" },
 ];
 
 function iconFor(text) {
   const found = FACILITY_ICONS.find((f) => f.match.test(text));
-  return found ? found.icon : "✨";
+  return found ? found.icon : "sparkle";
 }
 
 // Pulls a short, card-friendly title out of the longer facility description
@@ -71,37 +138,9 @@ function shortTitle(text) {
   return dashSplit.length > 34 ? `${dashSplit.slice(0, 34)}…` : dashSplit;
 }
 
-// Alternating navy / teal / mint tones so the facility photo grid doesn't
-// look monochrome. Swap each `src` in the card render for a real photo
-// whenever available — layout and captions keep working unchanged.
-const FACILITY_TONES = [
-  ["1B4D3E", "ffffff"],
-  ["4FA8A3", "ffffff"],
-  ["DCEEEC", "1B4D3E"],
-];
-
-// Real photos take priority over the generated placeholder for any facility
-// whose text includes the given keyword (case-insensitive). Add more entries
-// here as real photos come in — e.g. nicu: "/images/facilities/nicu.jpg".
-const FACILITY_PHOTOS = {
-  "24x7": "/gallery/reception.png",
-  vaccination: "/facilities/vaccination.png",
-  nicu: "/gallery/nicu-1-2.png",
-  picu: "/gallery/picu3.png",
-  admission: "/gallery/private11.png",
-};
-
-function facilityImage(text, index) {
-  const override = Object.keys(FACILITY_PHOTOS).find((key) =>
-    text.toLowerCase().includes(key)
-  );
-  if (override) return FACILITY_PHOTOS[override];
-
-  const [bg, fg] = FACILITY_TONES[index % FACILITY_TONES.length];
-  return `https://placehold.co/480x340/${bg}/${fg}?text=${encodeURIComponent(
-    shortTitle(text)
-  )}&font=montserrat`;
-}
+// Alternating pink / mint / deep-green tones so the facility icon grid
+// doesn't look monochrome.
+const FACILITY_TONES = ["lch-fac-tone--pink", "lch-fac-tone--mint", "lch-fac-tone--deep"];
 
 // Equipment gets a photo placeholder — swap `src` for real equipment photos
 // whenever available, layout stays the same.
@@ -117,7 +156,7 @@ const EQUIPMENT_IMAGES = {
 // Add more entries as real photos come in — key must match the exact
 // string used in data.js's `equipment` array.
 const EQUIPMENT_PHOTOS = {
-  "Ventilator": "/facilities/ventilator.png",
+  Ventilator: "/facilities/ventilator.png",
   "Bedside Monitor": "/facilities/bedside-monitor.png",
   "Bubble CPAP": "/facilities/Bubble CPAP.png",
   "Double Surface Phototherapy": "/facilities/double-surface-phototherapy.png",
@@ -199,27 +238,25 @@ export default function Facilities() {
         </Reveal>
 
         <div className="lch-fac-grid">
-          {facilitiesAvailable.map((facility, i) => (
-            <Reveal
-              as="div"
-              className="lch-fac-card"
-              key={facility}
-              delay={(i % 6) * 70}
-            >
-              <div className="lch-fac-card__photo">
-                <img
-                  src={facilityImage(facility, i)}
-                  alt={shortTitle(facility)}
-                  loading="lazy"
-                />
-                <span className="lch-fac-card__badge">{iconFor(facility)}</span>
-              </div>
-              <div className="lch-fac-card__body">
-                <h4>{shortTitle(facility)}</h4>
-                <p>{facility}</p>
-              </div>
-            </Reveal>
-          ))}
+          {facilitiesAvailable.map((facility, i) => {
+            const tone = FACILITY_TONES[i % FACILITY_TONES.length];
+            return (
+              <Reveal
+                as="div"
+                className="lch-fac-card"
+                key={facility}
+                delay={(i % 6) * 70}
+              >
+                <div className={`lch-fac-card__icon ${tone}`}>
+                  <Icon name={iconFor(facility)} className="lch-fac-card__icon-svg" />
+                </div>
+                <div className="lch-fac-card__body">
+                  <h4>{shortTitle(facility)}</h4>
+                  <p>{facility}</p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 

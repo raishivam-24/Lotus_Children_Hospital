@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -27,6 +28,41 @@ const HIGHLIGHT_FACILITIES = [
     desc: "Comfortable private rooms and general wards.",
   },
 ];
+
+// Doctor headshots, keyed by the exact `name` string used in data.js. Drop
+// the actual image files in /public/doctors/ using these filenames — any
+// doctor without a matching entry, or whose image fails to load, just
+// falls back to the initials avatar below, so this is safe to leave
+// partially filled in.
+const DOCTOR_PHOTOS = {
+  "Dr. Manoj Chandrakar": "/doctors/Dr-Manoj-Chandrakar.png",
+  "Dr. Anis Akbani": "/doctors/Dr-Anis-Akbani.jpg",
+  "Dr. Alok Kashyap": "/doctors/Dr-Alok-Kashyap.jpg",
+};
+
+function DoctorAvatar({ name }) {
+  const [failed, setFailed] = useState(false);
+  const photo = DOCTOR_PHOTOS[name];
+  const initials = name
+    .replace("Dr. ", "")
+    .split(" ")
+    .map((n) => n[0])
+    .join("");
+
+  if (photo && !failed) {
+    return (
+      <div className="lch-doctor-card__avatar lch-doctor-card__avatar--photo">
+        <img src={photo} alt={name} onError={() => setFailed(true)} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="lch-doctor-card__avatar" aria-hidden="true">
+      {initials}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const { doctors, governmentScheme, contact } = lotusData;
@@ -140,13 +176,7 @@ export default function HomePage() {
         <div className="lch-doctor-grid">
           {doctors.map((doc) => (
             <div className="lch-doctor-card" key={doc.regNo}>
-              <div className="lch-doctor-card__avatar" aria-hidden="true">
-                {doc.name
-                  .replace("Dr. ", "")
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
+              <DoctorAvatar name={doc.name} />
               <h4>{doc.name}</h4>
               <p className="lch-doctor-card__spec">{doc.specialization}</p>
               <ul className="lch-doctor-card__quals">

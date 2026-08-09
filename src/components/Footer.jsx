@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import lotusData from "../data/data";
+import logo from "../assets/logo.png";
 import "./Footer.css";
 
 export default function Footer() {
@@ -10,7 +11,12 @@ export default function Footer() {
     <footer className="lch-footer">
       <div className="lch-footer__top">
         <div className="lch-footer__brand">
-          <span className="lch-footer__name">{lotusData.hospitalName}</span>
+          <div className="lch-footer__brand-row">
+            <div className="lch-footer__logo">
+              <img src={logo} alt={`${lotusData.hospitalName} logo`} />
+            </div>
+            <span className="lch-footer__name">{lotusData.hospitalName}</span>
+          </div>
           <p className="lch-footer__tagline">{lotusData.tagline}</p>
           <p className="lch-footer__timing">
             🕘 {contact.consultationTiming}

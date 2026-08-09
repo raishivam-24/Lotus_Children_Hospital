@@ -421,10 +421,10 @@
 }
 
 .lch-doctor-card__avatar {
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   margin: 0 auto 18px;
-  border-radius: 50%;
+  border-radius: 18px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: #fff;
   font-family: "Montserrat", serif;
@@ -433,6 +433,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Photo variant — a taller rounded-rectangle frame instead of a circle, so
+   a headshot reads as a portrait card rather than a cropped-in badge. Same
+   brand-gradient ring as the initials avatar so a mixed grid still looks
+   like one deliberate set. */
+.lch-doctor-card__avatar--photo {
+  width: 200px;
+  height: 300px;
+  padding: 0;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 8px 18px rgba(27, 77, 62, 0.18);
+}
+
+.lch-doctor-card__avatar--photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  display: block;
+  border: 4px solid #fff;
 }
 
 .lch-doctor-card h4 {

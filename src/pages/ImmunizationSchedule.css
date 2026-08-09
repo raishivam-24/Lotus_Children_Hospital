@@ -1,0 +1,269 @@
+/* Uses the site's existing tokens where they're already defined globally
+   (--primary, --mint, --pink, --ink, --ink-soft ...), with a fallback value
+   on each var() so this file still looks right if it's ever previewed on
+   its own. Fallbacks match the brand tile: pink #D97B93, mint/teal #4FA8A3,
+   deep green #1B4D3E. */
+
+.lch-imm-page {
+  --imm-pink: var(--pink, #D97B93);
+  --imm-pink-tint: var(--pink-tint, #FBEAEF);
+  --imm-mint: var(--mint, #4FA8A3);
+  --imm-mint-tint: var(--mint-tint, #E7F5F3);
+  --imm-deep: var(--primary, #1B4D3E);
+  --imm-deep-tint: #E2EEE9;
+  --imm-ink: var(--ink, #2B2B28);
+  --imm-ink-soft: var(--ink-soft, #6E6B64);
+  --imm-border: var(--border, #ECE8DF);
+}
+
+/* ---------- Hero + "how to read it" bar ---------- */
+
+.lch-imm-hero {
+  padding-bottom: 24px;
+}
+
+.lch-imm-howto {
+  max-width: 1000px;
+}
+
+.lch-imm-howto .lch-scheme__badge {
+  animation: none;
+}
+
+/* ---------- Schedule rows ---------- */
+
+.lch-imm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lch-imm-row {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.lch-imm-age {
+  border-radius: 18px;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.lch-imm-age__main {
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.2;
+}
+
+.lch-imm-age__sub {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  line-height: 1.3;
+}
+
+.lch-imm-age--pink {
+  background: var(--imm-pink-tint);
+  color: color-mix(in srgb, var(--imm-pink) 70%, black 20%);
+}
+
+.lch-imm-age--mint {
+  background: var(--imm-mint-tint);
+  color: color-mix(in srgb, var(--imm-mint) 65%, black 25%);
+}
+
+.lch-imm-age--deep {
+  background: var(--imm-deep-tint);
+  color: var(--imm-deep);
+}
+
+/* ---------- Vaccine cards ---------- */
+
+.lch-imm-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lch-imm-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--imm-border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: 0 10px 22px rgba(0, 31, 63, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lch-imm-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 31, 63, 0.12);
+}
+
+.lch-imm-card__main {
+  min-width: 0;
+}
+
+.lch-imm-card__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.lch-imm-card__name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--imm-ink);
+}
+
+.lch-imm-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lch-imm-badge.is-scheduled {
+  background: var(--imm-mint-tint);
+  color: color-mix(in srgb, var(--imm-mint) 65%, black 25%);
+}
+
+.lch-imm-badge.is-booster {
+  background: var(--imm-pink-tint);
+  color: color-mix(in srgb, var(--imm-pink) 70%, black 20%);
+}
+
+.lch-imm-dose {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--imm-ink-soft);
+}
+
+.lch-imm-caption {
+  margin: 5px 0 0;
+  font-size: 0.83rem;
+  color: var(--imm-ink-soft);
+  line-height: 1.45;
+}
+
+.lch-imm-note-line {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--imm-ink-soft);
+}
+
+.lch-imm-info {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--imm-deep);
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.lch-imm-info:hover {
+  background: var(--imm-mint);
+  transform: scale(1.08);
+}
+
+.lch-imm-info:focus-visible {
+  outline: 2px solid var(--imm-mint);
+  outline-offset: 2px;
+}
+
+.lch-imm-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 5;
+  width: 230px;
+  background: var(--imm-deep);
+  color: #fff;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(27, 77, 62, 0.28);
+}
+
+/* ---------- Good to know list ---------- */
+
+.lch-imm-notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.lch-imm-notes li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--imm-ink-soft);
+}
+
+.lch-imm-notes li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--imm-mint);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .lch-imm-row {
+    grid-template-columns: 96px 1fr;
+    gap: 12px;
+  }
+
+  .lch-imm-age {
+    padding: 12px 8px;
+  }
+
+  .lch-imm-age__main {
+    font-size: 0.88rem;
+  }
+
+  .lch-imm-card {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lch-imm-card {
+    transition: none;
+  }
+}

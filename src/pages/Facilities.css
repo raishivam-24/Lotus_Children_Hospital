@@ -147,7 +147,7 @@
   font-size: 1.15rem;
 }
 
-/* ---------- Facility photo cards ---------- */
+/* ---------- Facility cards ---------- */
 .lch-fac-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -160,6 +160,11 @@
   overflow: hidden;
   box-shadow: 0 10px 22px rgba(0, 31, 63, 0.07);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 28px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .lch-fac-card:hover {
@@ -167,47 +172,47 @@
   box-shadow: 0 16px 30px rgba(0, 31, 63, 0.14);
 }
 
-.lch-fac-card__photo {
-  position: relative;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-}
-
-.lch-fac-card__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.lch-fac-card:hover .lch-fac-card__photo img {
-  transform: scale(1.08);
-}
-
-.lch-fac-card__badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
+/* Icon tile — replaces the old empty photo block. Three brand tones cycle
+   across the grid (hard-coded hex, not color-mix() — mixed browser support
+   made every tone collapse to the same washed-out pink) so the page reads
+   as one deliberate palette rather than one flat color. */
+.lch-fac-card__icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 6px 14px rgba(0, 31, 63, 0.18);
-  transition: transform 0.25s ease;
+  margin: 0 auto 18px;
+  transition: transform 0.3s ease;
 }
 
-.lch-fac-card:hover .lch-fac-card__badge {
-  transform: rotate(-8deg) scale(1.08);
-  background: var(--primary);
+.lch-fac-card:hover .lch-fac-card__icon {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+.lch-fac-card__icon-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.lch-fac-tone--pink {
+  background: #FBE1E9;
+  color: #C24F6E;
+}
+
+.lch-fac-tone--mint {
+  background: #D9F2EF;
+  color: #2A7C77;
+}
+
+.lch-fac-tone--deep {
+  background: #DDEAE4;
+  color: #1B4D3E;
 }
 
 .lch-fac-card__body {
-  padding: 16px 18px 20px;
+  padding: 0;
 }
 
 .lch-fac-card__body h4 {
@@ -245,8 +250,7 @@
   .lch-fac-equip-card,
   .lch-fac-equip-card img,
   .lch-fac-card,
-  .lch-fac-card__photo img,
-  .lch-fac-card__badge {
+  .lch-fac-card__icon {
     animation: none !important;
     transition: none !important;
   }
