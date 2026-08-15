@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: "Facilities", to: "/facilities" },
   { label: "Doctors", to: "/doctors" },
   { label: "Gallery", to: "/gallery" },
-  { label: "Immunization Schedule", to: "/immunization-schedule" },
+  // { label: "Immunization Schedule", to: "/immunization-schedule" },
   { label: "Contact Us", to: "/contact" },
 ];
 

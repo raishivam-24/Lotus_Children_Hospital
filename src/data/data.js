@@ -9,7 +9,7 @@ const lotusChildrenHospitalData = {
     address: "Tiwari Chaal, Rajendra Nagar Chowk, Raipur Road, Bilaspur (C.G.)",
     phones: ["8640013150", "8109913150", "07752-446602"],
     email: "lotuschildrenhospital2023@gmail.com",
-    consultationTiming: "Daily, 9:00 AM to 9:00 PM (for children and adults)",
+    consultationTiming: "Daily, 9:00 AM to 9:00 PM (for children)",
     services: ["Daily vaccination for all", "24x7 admission facility"],
   },
 

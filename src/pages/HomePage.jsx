@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import lotusData from "../data/data";
 import logo from "../assets/logo.png";
 import "./HomePage.css";
+
+const HERO_BG_IMAGES = [
+  "/gallery/hospital-front-view.png",
+  "/gallery/reception.png",
+  "/gallery/nicu-2-2.png",
+  "/gallery/hospital-back-view.png",
+];
+
+const HERO_BG_INTERVAL = 5000; // milliseconds 
 
 const HIGHLIGHT_FACILITIES = [
   {
@@ -66,58 +75,80 @@ function DoctorAvatar({ name }) {
 
 export default function HomePage() {
   const { doctors, governmentScheme, contact } = lotusData;
+  const [bgIndex, setBgIndex] = useState(0);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBgIndex((i) => (i + 1) % HERO_BG_IMAGES.length);
+    }, HERO_BG_INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <div className="lch-page">
       <Header />
 
       {/* HERO */}
       <section className="lch-hero">
-        <div className="lch-hero__text">
-          <span className="lch-eyebrow">Lotus Children's Hospital</span>
-          <h1>
-            Where healing feels
-            <br />
-            like <em>home</em>.
-          </h1>
-          <p>
-            Where medical excellence meets emotional well-being. We provide a
-            soothing, playful environment designed specifically for the unique
-            needs of children and their families.
-          </p>
-          <div className="lch-hero__actions">
-            <NavLink to="/contact" className="lch-btn lch-btn--primary">
-              Book an Appointment
-            </NavLink>
-            <NavLink to="/facilities" className="lch-btn lch-btn--outline">
-              Our Facilities
-            </NavLink>
-          </div>
-          <p className="lch-hero__timing">
-            🕘 Consultation: {contact.consultationTiming}
-          </p>
-        </div>
-        <div className="lch-hero__art" aria-hidden="true">
-          <svg
-            className="lch-hero__blob"
-            viewBox="0 0 200 200"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            <defs>
-              <radialGradient id="lchBlobGradient" cx="32%" cy="32%" r="75%">
-                <stop offset="0%" stopColor="#DCEEEC" />
-                <stop offset="60%" stopColor="#F0ECE3" />
-                <stop offset="100%" stopColor="#F9F7F2" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-            <path
-              transform="translate(100 100)"
-              fill="url(#lchBlobGradient)"
-              d="M45.7,-49.5C58.9,-39.7,68.4,-24.4,70.5,-8.1C72.6,8.2,67.3,25.5,56.6,38.5C45.9,51.5,29.8,60.2,12.4,63.9C-5,67.6,-23.7,66.3,-38.7,57.4C-53.7,48.5,-65,32,-68.5,14.1C-72,-3.8,-67.7,-23.1,-56.7,-37.4C-45.7,-51.7,-28,-61,-9.9,-63.4C8.2,-65.8,26.4,-59.3,45.7,-49.5Z"
+        <div className="lch-hero__bg" aria-hidden="true">
+          {HERO_BG_IMAGES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt=""
+              className={`lch-hero__bg-img ${i === bgIndex ? "is-active" : ""}`}
             />
-          </svg>
-          <div className="lch-hero__logo">
-            <img src={logo} alt="Lotus Children's Hospital" />
+          ))}
+          <div className="lch-hero__bg-overlay" />
+        </div>
+
+        <div className="lch-hero__inner">
+          <div className="lch-hero__text">
+            <span className="lch-eyebrow">Lotus Children's Hospital</span>
+            <h1>
+              Where healing feels
+              <br />
+              like <em>home</em>.
+            </h1>
+            <p>
+              Where medical excellence meets emotional well-being. We provide a
+              soothing, playful environment designed specifically for the unique
+              needs of children and their families.
+            </p>
+            <div className="lch-hero__actions">
+              <NavLink to="/contact" className="lch-btn lch-btn--primary">
+                Book an Appointment
+              </NavLink>
+              <NavLink to="/facilities" className="lch-btn lch-btn--outline">
+                Our Facilities
+              </NavLink>
+            </div>
+            <p className="lch-hero__timing">
+              🕘 Consultation: {contact.consultationTiming}
+            </p>
+          </div>
+
+          <div className="lch-hero__art" aria-hidden="true">
+            <svg
+              className="lch-hero__blob"
+              viewBox="0 0 200 200"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <defs>
+                <radialGradient id="lchBlobGradient" cx="32%" cy="32%" r="75%">
+                  <stop offset="0%" stopColor="#DCEEEC" />
+                  <stop offset="60%" stopColor="#F0ECE3" />
+                  <stop offset="100%" stopColor="#F9F7F2" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <path
+                transform="translate(100 100)"
+                fill="url(#lchBlobGradient)"
+                d="M45.7,-49.5C58.9,-39.7,68.4,-24.4,70.5,-8.1C72.6,8.2,67.3,25.5,56.6,38.5C45.9,51.5,29.8,60.2,12.4,63.9C-5,67.6,-23.7,66.3,-38.7,57.4C-53.7,48.5,-65,32,-68.5,14.1C-72,-3.8,-67.7,-23.1,-56.7,-37.4C-45.7,-51.7,-28,-61,-9.9,-63.4C8.2,-65.8,26.4,-59.3,45.7,-49.5Z"
+              />
+            </svg>
+            <div className="lch-hero__logo">
+              <img src={logo} alt="Lotus Children's Hospital" />
+            </div>
           </div>
         </div>
       </section>

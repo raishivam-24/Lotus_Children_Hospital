@@ -99,10 +99,51 @@
   font-size: 1.05rem;
 }
 
-/* ---------- Hero ---------- */
-/* ---------- Hero ---------- */
+/* ---------- Hero (full-bleed) ---------- */
 
 .lch-hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.lch-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.lch-hero__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.lch-hero__bg-img.is-active {
+  opacity: 1;
+}
+
+.lch-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(11, 24, 19, 0.92) 0%,
+    rgba(11, 24, 19, 0.85) 45%,
+    rgba(11, 24, 19, 0.55) 75%,
+    rgba(11, 24, 19, 0.25) 100%
+  );
+}
+
+.lch-hero__inner {
+  position: relative;
+  z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
   padding: 56px 32px 40px;
@@ -112,17 +153,35 @@
   gap: 40px;
 }
 
+.lch-hero__text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.lch-hero .lch-eyebrow {
+  color: var(--mint);
+}
+
 .lch-hero h1 {
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   line-height: 1.08;
   letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.lch-hero em {
+  color: var(--mint);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .lch-hero__text p {
   margin: 22px 0 28px;
   font-size: 1.08rem;
   line-height: 1.65;
-  color: var(--ink-soft);
+  color: #e9f3f0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
   max-width: 46ch;
 }
 
@@ -135,7 +194,8 @@
 .lch-hero__timing {
   margin-top: 22px;
   font-size: 0.9rem;
-  color: var(--ink-soft);
+  color: #d7e7e2;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
 /* Hero logo area */
@@ -293,32 +353,34 @@
 /* ---------- Facility highlight cards ---------- */
 .lch-facility-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   margin-bottom: 48px;
 }
 
 .lch-facility-card {
-  background: #fff;
+  position: relative;
   border-radius: 22px;
   overflow: hidden;
-  border: 1px solid #e8eef3;
-  box-shadow: 0 12px 28px rgba(0, 31, 63, 0.08);
-  transition: all 0.35s ease;
-  padding: 18px;
+  padding: 0;
+  border: none;
+  box-shadow: 0 12px 28px rgba(0, 31, 63, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .lch-facility-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 22px 45px rgba(0, 31, 63, 0.16);
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(0, 31, 63, 0.18);
 }
 
 .lch-facility-card__image {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 4 / 3;
+  height: auto;
   overflow: hidden;
-  border-radius: 16px;
-  margin-bottom: 18px;
+  border-radius: 0;
+  margin-bottom: 0;
+  position: relative;
 }
 
 .lch-facility-card__image img {
@@ -326,23 +388,39 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.45s ease;
+  transition: transform 0.5s ease;
 }
 
 .lch-facility-card:hover .lch-facility-card__image img {
-  transform: scale(1.08);
+  transform: scale(1.06);
+}
+
+.lch-facility-card__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 32%,
+    rgba(0, 0, 0, 0) 60%
+  );
 }
 
 .lch-facility-card h4 {
-  font-size: 1.2rem;
-  color: var(--primary);
-  margin-bottom: 10px;
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 18px;
+  z-index: 1;
+  font-size: 1.15rem;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .lch-facility-card p {
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-  line-height: 1.6;
+  display: none;
 }
 
 .lch-facility-more {
@@ -533,7 +611,7 @@
 /* ---------- Responsive ---------- */
 
 @media (max-width: 980px) {
-  .lch-hero {
+  .lch-hero__inner {
     grid-template-columns: 1fr;
     gap: 20px;
   }
@@ -558,7 +636,7 @@
 }
 
 @media (max-width: 760px) {
-  .lch-hero {
+  .lch-hero__inner {
     padding: 28px 20px 40px;
     text-align: center;
     display: flex;
@@ -643,7 +721,7 @@
 }
 
 @media (max-width: 520px) {
-  .lch-hero {
+  .lch-hero__inner {
     padding: 22px 16px 36px;
     gap: 20px;
   }
