@@ -44,9 +44,9 @@ const HIGHLIGHT_FACILITIES = [
 // falls back to the initials avatar below, so this is safe to leave
 // partially filled in.
 const DOCTOR_PHOTOS = {
-  "Dr. Manoj Chandrakar": "/doctors/Dr-Manoj-Chandrakar.png",
-  "Dr. Anis Akbani": "/doctors/Dr-Anis-Akbani.jpg",
-  "Dr. Alok Kashyap": "/doctors/Dr-Alok-Kashyap.jpg",
+  "Dr. Manoj Chandrakar": "/doctors/manoj sir.png",
+  "Dr. Anish Akbani": "/doctors/anish sir.png",
+  "Dr. Alok Kashyap": "/doctors/alok sir.png",
 };
 
 function DoctorAvatar({ name }) {

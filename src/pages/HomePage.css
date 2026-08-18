@@ -273,7 +273,7 @@
 /* ---------- Government scheme strip ---------- */
 .lch-scheme {
   max-width: 1216px;
-  margin: 0 auto 64px;
+  margin: 32px auto 64px;   /* was: 0 auto 64px */
   background: var(--secondary);
   border-radius: 24px;
   padding: 28px 32px;
@@ -691,7 +691,7 @@
   .lch-scheme {
     flex-direction: column;
     text-align: center;
-    margin: 0 20px 48px;
+    margin: 24px 20px 48px;   /* was: 0 20px 48px */
   }
 
   .lch-scheme .lch-btn {

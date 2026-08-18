@@ -6,12 +6,16 @@ import "./HomePage.css";
 import "./Doctors.css";
 
 // Import doctor images
-import doctor1 from "/doctors/Dr-Manoj-Chandrakar.png";
+import doctor1 from "/doctors/manoj sir.png";
+import doctor2 from "/doctors/anish sir.png"
+import doctor3 from "/doctors/alok sir.png"
 
 
 // Map images to doctors
 const DOCTOR_PHOTOS = {
   "CGMC-10979/2021": doctor1,
+  "CGMC-8347/2018": doctor2,
+  "CGMC-5397/2014":doctor3,
   // "REGISTRATION_NO_2": doctor2,
 };
 

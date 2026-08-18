@@ -30,7 +30,7 @@ const lotusChildrenHospitalData = {
       regNo: "CGMC-10979/2021",
     },
     {
-      name: "Dr. Anis Akbani",
+      name: "Dr. Anish Akbani",
       nameHindi: "डॉ. अनीस आकबानी",
       qualifications: [
         "DCH, DNB (Paediatrics)",
